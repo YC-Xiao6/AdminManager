@@ -8,6 +8,7 @@ function createCode() {
         var charIndex = Math.floor(Math.random() * 10);
         zkzcode += selectChar[charIndex];
     }
+    return zkzcode;
 }
 
 var uname = new Ext.form.TextField( {
@@ -66,33 +67,48 @@ var checks = new Ext.form.TextField( {
     // inputBorders:false,
     emptyText: "请输入验证码",
     blankText : '验证码不能为空',
-    vtype: 'check',
-    listeners:{
-        click: {
-            element: 'el', //触发点击事件
-            fn: function(){
-                createCode();
-                Ext.MessageBox.buttonText.yes = "确定";
-                Ext.MessageBox.buttonText.no = "刷新";
-                Ext.MessageBox.confirm( '验证码：', zkzcode,goRefresh)
-                function goRefresh(btn) {
-                    if (btn==="no"){
-                        createCode();
-                        Ext.MessageBox.confirm( '验证码：', zkzcode,goRefresh)
-                    }
-                    if (btn==="yes"){
-                        //通过id获取对象
-                        Ext.getCmp("checks").reset();
-                    }
-                }
-            }
-        },
-    }
+        vtype: 'check',
+    columnWidth: 0.68,
+    // listeners:{
+    //     click: {
+    //         element: 'el', //触发点击事件
+    //         fn: function(){
+    //             createCode();
+    //             Ext.MessageBox.buttonText.yes = "确定";
+    //             Ext.MessageBox.buttonText.no = "刷新";
+    //             Ext.MessageBox.confirm( '验证码：', zkzcode,goRefresh)
+    //             function goRefresh(btn) {
+    //                 if (btn==="no"){
+    //                     createCode();
+    //                     Ext.MessageBox.confirm( '验证码：', zkzcode,goRefresh)
+    //                 }
+    //                 if (btn==="yes"){
+    //                     //通过id获取对象
+    //                     Ext.getCmp("checks").reset();
+    //                 }
+    //             }
+    //         }
+    //     },
+    // }
     // style:'margin:20px'
     // margin:"15 15 0 0",
     // shadow:true,
     
 });
+var checkImg = new Ext.panel.Panel({
+    id : 'checkImg',
+    width:'100px',
+    html:'<a style="background: #2d6cbb;color: white;font-size: 20px;margin:0;width: 80px;">'+createCode()+'</a>',
+    style:'padding: 0px 10px 10px 10px;margin: 0px 10px 10px 10px;padding-left: 100px;',
+    listeners:{
+        click: {
+            element: 'el', //触发点击事件
+            fn: function(){
+                Ext.getCmp('checkImg').update('<a style="background: #2d6cbb;color: white;font-size: 20px;margin:0;width: 80px;">'+createCode()+'</a>');
+            }
+        },
+    }
+})
 //扩展验证
 Ext.apply(Ext.form.VTypes,{
     'check' : function(_v){
@@ -120,7 +136,7 @@ Ext.onReady(function() {
         buttonAlign: 'center',
         id: "form",
         //定义表单元素
-        items: [uname,pwd,checks],
+        items: [uname,pwd,checks,checkImg],
         buttons: [{
             text: '登录',
             type: 'submit',

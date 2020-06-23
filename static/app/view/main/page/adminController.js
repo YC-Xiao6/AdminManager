@@ -355,34 +355,5 @@ Ext.define('AdminManager.view.main.page.adminController',{
             grid.getStore().load();
         }
     },
-    /*bindWin: function () {
-        var newWin = Ext.create('MaiJiangDou.view.pageOne.popups.rowEditing');          
-        newWin.window = new Ext.Window({
-            title: '绑定',
-            //id: 'newWin',
-            width: 400,
-            height:400,
-            modal: true,
-            resizable: false,
-            closeAction: 'hide',
-            plain: true,
-            //buttonAlign: 'center',
-            constrainHeader:true,
-            items: newWin,
-            buttons: [
-                {
-                    text: '提交',
-                    scope: this,
-                    //handler:"saveAddInfo"                 
-                },
-                {
-                    text:'关闭',
-                    handler:function() {
-                        newWin.window.hide();
-                    }
-                }
-            ]
-        });
-        newWin.window.show();
-    },*/
+
 })
