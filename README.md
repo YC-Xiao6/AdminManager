@@ -1,7 +1,7 @@
 # AdminManager
     学习搭建了一个基于Extjs/goIris框架的用户管理系统
 ## 概述
-用extjs框架与go的iris框架进行搭建的一个基础性用户管理系统。
+    用extjs框架与go的iris框架进行搭建的一个基础性用户管理系统。
 ## 实现功能：
     1.用户登录退出，运用sessionStorage创建存储登录状态
     2.用户信息管理模块
